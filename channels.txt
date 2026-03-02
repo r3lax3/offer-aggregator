@@ -1,0 +1,6 @@
+# Channels/chats to monitor (one per line)
+# Use channel/chat ID (numeric) or @username
+# Lines starting with # are comments
+# Example:
+# @python_jobs
+# -1001234567890
