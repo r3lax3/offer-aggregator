@@ -1,38 +1,114 @@
-# === Python Backend ===
-python developer
-python backend
-python разработчик
-backend developer
-бэкенд разработчик
-бекенд разработчик
+# === Python ===
+python
+питон
+пайтон
+
+# === JavaScript / TypeScript / Node ===
+javascript
+typescript
+node.js
+nodejs
 
 # === Frameworks ===
 fastapi
 django
 flask
 aiohttp
+express
+nestjs
+next.js
+nuxt
 
-# === Scraping / Parsing ===
-web scraping
-scraping
-парсинг
-парсер
-скрапинг
-selenium
-playwright
-
-# === Telegram Bots ===
+# === Telegram ===
 telegram bot
 телеграм бот
+тг бот
 aiogram
 telethon
+grammy
 
-# === Queues & Infra ===
+# === Web Scraping / Parsing ===
+scraping
+скрапинг
+парсинг
+парсер
+parser
+crawler
+краулер
+selenium
+playwright
+puppeteer
+beautifulsoup
+scrapy
+
+# === Databases ===
+postgresql
+postgres
+mysql
+mongodb
+redis
+sqlite
+
+# === Queues / Streaming ===
 rabbitmq
 kafka
+celery
 
-# === Freelance / Remote ===
-python freelance
-python фриланс
-удалённая работа python
-remote python
+# === APIs / Backend ===
+rest api
+api разработка
+backend
+бэкенд
+бекенд
+микросервис
+microservice
+
+# === DevOps / Infra ===
+docker
+kubernetes
+k8s
+ci/cd
+devops
+linux
+nginx
+aws
+github actions
+
+# === Bots (general) ===
+discord bot
+дискорд бот
+чат-бот
+chatbot
+
+# === Automation ===
+автоматизация
+automation
+интеграция
+integration
+etl
+
+# === Freelance / Job terms (RU) ===
+разработчик
+программист
+developer
+фриланс
+freelance
+удалёнка
+удалённо
+remote
+part-time
+full-time
+вакансия
+ищем
+ищу разработчика
+ищу программиста
+нужен разработчик
+нужен программист
+требуется разработчик
+требуется программист
+
+# === Data ===
+data engineer
+data pipeline
+pandas
+numpy
