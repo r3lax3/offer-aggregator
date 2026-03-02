@@ -1,0 +1,6 @@
+# Keywords for message filtering (one per line)
+# Lines starting with # are comments
+# Example:
+# freelance
+# python developer
+# удалённая работа
