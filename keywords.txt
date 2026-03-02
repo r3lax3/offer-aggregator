@@ -1,6 +1,38 @@
-# Keywords for message filtering (one per line)
-# Lines starting with # are comments
-# Example:
-# freelance
-# python developer
-# удалённая работа
+# === Python Backend ===
+python developer
+python backend
+python разработчик
+backend developer
+бэкенд разработчик
+бекенд разработчик
+
+# === Frameworks ===
+fastapi
+django
+flask
+aiohttp
+
+# === Scraping / Parsing ===
+web scraping
+scraping
+парсинг
+парсер
+скрапинг
+selenium
+playwright
+
+# === Telegram Bots ===
+telegram bot
+телеграм бот
+aiogram
+telethon
+
+# === Queues & Infra ===
+rabbitmq
+kafka
+
+# === Freelance / Remote ===
+python freelance
+python фриланс
+удалённая работа python
+remote python
