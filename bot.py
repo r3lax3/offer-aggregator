@@ -37,7 +37,7 @@ def build_keyword_pattern(keywords: list[str]) -> re.Pattern | None:
     return re.compile("|".join(escaped), re.IGNORECASE)
 
 
-def display_startup(keywords: list[str], target_chat_id: int):
+def display_startup(keywords: list[str], target_chat_id: int, target_name: str, target_link: str | None):
     """Show a pretty startup banner with current configuration."""
     console.print()
     console.print(
@@ -58,7 +58,9 @@ def display_startup(keywords: list[str], target_chat_id: int):
     console.print()
 
     console.print(f"  [bold]Mode:[/bold] [blue]All groups & channels (excluding DMs)[/blue]")
-    console.print(f"  [bold]Target chat ID:[/bold] [magenta]{target_chat_id}[/magenta]")
+    console.print(f"  [bold]Target:[/bold] [magenta]{target_name}[/magenta] [dim](ID: {target_chat_id})[/dim]")
+    if target_link:
+        console.print(f"  [bold]Invite link:[/bold] [underline cyan]{target_link}[/underline cyan]")
     console.print()
 
 
@@ -108,8 +110,22 @@ async def main():
             )
         )
 
+    # --- Resolve target chat info ---
+    target_entity = await client.get_entity(target_chat_id)
+    target_name = getattr(target_entity, "title", None) or getattr(target_entity, "username", None) or "Unknown"
+    target_link = None
+    if hasattr(target_entity, "username") and target_entity.username:
+        target_link = f"https://t.me/{target_entity.username}"
+    else:
+        try:
+            from telethon.tl.functions.messages import ExportChatInviteRequest
+            result = await client(ExportChatInviteRequest(target_chat_id))
+            target_link = result.link
+        except Exception:
+            pass
+
     # --- Display config ---
-    display_startup(keywords, target_chat_id)
+    display_startup(keywords, target_chat_id, target_name, target_link)
 
     # --- Set up handler (all messages except DMs) ---
     @client.on(events.NewMessage())
