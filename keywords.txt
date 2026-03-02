@@ -1,6 +1,114 @@
-# Keywords for message filtering (one per line)
-# Lines starting with # are comments
-# Example:
-# freelance
-# python developer
-# удалённая работа
+# === Python ===
+python
+питон
+пайтон
+
+# === JavaScript / TypeScript / Node ===
+javascript
+typescript
+node.js
+nodejs
+
+# === Frameworks ===
+fastapi
+django
+flask
+aiohttp
+express
+nestjs
+next.js
+nuxt
+
+# === Telegram ===
+telegram bot
+телеграм бот
+тг бот
+aiogram
+telethon
+grammy
+
+# === Web Scraping / Parsing ===
+scraping
+скрапинг
+парсинг
+парсер
+parser
+crawler
+краулер
+selenium
+playwright
+puppeteer
+beautifulsoup
+scrapy
+
+# === Databases ===
+postgresql
+postgres
+mysql
+mongodb
+redis
+sqlite
+
+# === Queues / Streaming ===
+rabbitmq
+kafka
+celery
+
+# === APIs / Backend ===
+rest api
+api разработка
+backend
+бэкенд
+бекенд
+микросервис
+microservice
+
+# === DevOps / Infra ===
+docker
+kubernetes
+k8s
+ci/cd
+devops
+linux
+nginx
+aws
+github actions
+
+# === Bots (general) ===
+discord bot
+дискорд бот
+чат-бот
+chatbot
+
+# === Automation ===
+автоматизация
+automation
+интеграция
+integration
+etl
+
+# === Freelance / Job terms (RU) ===
+разработчик
+программист
+developer
+фриланс
+freelance
+удалёнка
+удалённо
+remote
+part-time
+full-time
+вакансия
+ищем
+ищу разработчика
+ищу программиста
+нужен разработчик
+нужен программист
+требуется разработчик
+требуется программист
+
+# === Data ===
+data engineer
+data pipeline
+pandas
+numpy
