@@ -37,7 +37,7 @@ def build_keyword_pattern(keywords: list[str]) -> re.Pattern | None:
     return re.compile("|".join(escaped), re.IGNORECASE)
 
 
-def display_startup(keywords: list[str], target_chat_id: int, target_name: str, target_link: str | None):
+def display_startup(keywords: list[str], blacklist: list[str], target_chat_id: int, target_name: str, target_link: str | None):
     """Show a pretty startup banner with current configuration."""
     console.print()
     console.print(
@@ -56,6 +56,16 @@ def display_startup(keywords: list[str], target_chat_id: int, target_name: str, 
         kw_table.add_row(str(i), kw)
     console.print(kw_table)
     console.print()
+
+    # Blacklist table
+    if blacklist:
+        bl_table = Table(title="Blacklist", show_lines=False, border_style="red")
+        bl_table.add_column("#", style="dim", width=4)
+        bl_table.add_column("Term", style="bold red")
+        for i, term in enumerate(blacklist, 1):
+            bl_table.add_row(str(i), term)
+        console.print(bl_table)
+        console.print()
 
     console.print(f"  [bold]Mode:[/bold] [blue]All groups & channels (excluding DMs)[/blue]")
     console.print(f"  [bold]Target:[/bold] [magenta]{target_name}[/magenta] [dim](ID: {target_chat_id})[/dim]")
@@ -90,7 +100,10 @@ async def main():
         console.print("[bold red]Error:[/bold red] No keywords found in keywords.txt")
         sys.exit(1)
 
+    blacklist = load_lines("blacklist.txt")
+
     pattern = build_keyword_pattern(keywords)
+    blacklist_pattern = build_keyword_pattern(blacklist)
 
     # --- Create session ---
     client = TelegramClient(SESSION_NAME, int(api_id), api_hash)
@@ -125,7 +138,7 @@ async def main():
             pass
 
     # --- Display config ---
-    display_startup(keywords, target_chat_id, target_name, target_link)
+    display_startup(keywords, blacklist, target_chat_id, target_name, target_link)
 
     # --- Set up handler (all messages except DMs) ---
     @client.on(events.NewMessage())
@@ -136,6 +149,8 @@ async def main():
         if not event.message.text:
             return
         if not pattern.search(event.message.text):
+            return
+        if blacklist_pattern and blacklist_pattern.search(event.message.text):
             return
 
         chat = await event.get_chat()

@@ -1,114 +1,89 @@
-# === Python ===
-python
-питон
-пайтон
+# ============================================
+#  Keywords — short client requests for dev work
+# ============================================
 
-# === JavaScript / TypeScript / Node ===
-javascript
-typescript
-node.js
-nodejs
-
-# === Frameworks ===
-fastapi
-django
-flask
-aiohttp
-express
-nestjs
-next.js
-nuxt
-
-# === Telegram ===
-telegram bot
-телеграм бот
-тг бот
-aiogram
-telethon
-grammy
-
-# === Web Scraping / Parsing ===
-scraping
-скрапинг
-парсинг
-парсер
-parser
-crawler
-краулер
-selenium
-playwright
-puppeteer
-beautifulsoup
-scrapy
-
-# === Databases ===
-postgresql
-postgres
-mysql
-mongodb
-redis
-sqlite
-
-# === Queues / Streaming ===
-rabbitmq
-kafka
-celery
-
-# === APIs / Backend ===
-rest api
-api разработка
-backend
-бэкенд
-бекенд
-микросервис
-microservice
-
-# === DevOps / Infra ===
-docker
-kubernetes
-k8s
-ci/cd
-devops
-linux
-nginx
-aws
-github actions
-
-# === Bots (general) ===
-discord bot
-дискорд бот
-чат-бот
-chatbot
-
-# === Automation ===
-автоматизация
-automation
-интеграция
-integration
-etl
-
-# === Freelance / Job terms (RU) ===
-разработчик
-программист
-developer
-фриланс
-freelance
-удалёнка
-удалённо
-remote
-part-time
-full-time
-вакансия
-ищем
+# === "Looking for someone" patterns (RU) ===
+кто поможет
+кто может
+кто сможет
+кто возьмётся
+кто возьмется
+кто готов
+кто знает как
+нужна помощь
+нужен бот
+нужен парсер
+нужен скрипт
+нужен сайт
+нужна автоматизация
+нужно спарсить
+нужно написать
+нужно сделать бот
+нужно разработать
+нужно автоматизировать
+помогите сделать
+помогите написать
+ищу кто сделает
+ищу исполнителя
 ищу разработчика
 ищу программиста
-нужен разработчик
-нужен программист
+ищу фрилансера
 требуется разработчик
 требуется программист
 
-# === Data ===
-data engineer
-data pipeline
-pandas
-numpy
+# === "Looking for someone" patterns (EN) ===
+looking for a dev
+looking for developer
+need a bot
+need a script
+need a parser
+need scraping
+need automation
+who can build
+who can make
+who can help
+
+# === Telegram bots ===
+телеграм бот
+телеграмм бот
+тг бот
+тг-бот
+telegram bot
+сделать бота
+написать бота
+разработка бота
+бот под ключ
+aiogram
+telethon
+
+# === Scraping / Parsing ===
+парсинг
+парсер
+спарсить
+спарсить данные
+скрапинг
+scraping
+scraper
+парсинг сайт
+parsing
+
+# === Automation / Scripts ===
+автоматизация
+автоматизировать
+скрипт для
+написать скрипт
+python скрипт
+automation
+
+# === Web / Backend (as task) ===
+сделать сайт
+написать api
+написать бэкенд
+сделать лендинг
+landing page
+
+# === Integration ===
+интеграция с
+подключить api
+подключить оплату
+интеграция crm
