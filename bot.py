@@ -4,6 +4,7 @@ import re
 
 from dotenv import load_dotenv
 from telethon import TelegramClient, events
+from telethon.tl.types import PeerUser
 from rich.console import Console
 from rich.table import Table
 from rich.panel import Panel
@@ -36,22 +37,7 @@ def build_keyword_pattern(keywords: list[str]) -> re.Pattern | None:
     return re.compile("|".join(escaped), re.IGNORECASE)
 
 
-async def resolve_channels(client: TelegramClient, raw_channels: list[str]) -> list:
-    """Resolve channel identifiers to Telethon entities."""
-    resolved = []
-    for ch in raw_channels:
-        try:
-            if ch.lstrip("-").isdigit():
-                entity = await client.get_entity(int(ch))
-            else:
-                entity = await client.get_entity(ch)
-            resolved.append(entity)
-        except Exception as e:
-            console.print(f"  [yellow]⚠ Cannot resolve '{ch}': {e}[/yellow]")
-    return resolved
-
-
-def display_startup(keywords: list[str], channels, target_chat_id: int):
+def display_startup(keywords: list[str], target_chat_id: int):
     """Show a pretty startup banner with current configuration."""
     console.print()
     console.print(
@@ -71,17 +57,7 @@ def display_startup(keywords: list[str], channels, target_chat_id: int):
     console.print(kw_table)
     console.print()
 
-    # Channels table
-    ch_table = Table(title="Monitored Channels / Chats", show_lines=False, border_style="blue")
-    ch_table.add_column("#", style="dim", width=4)
-    ch_table.add_column("Name", style="bold blue")
-    ch_table.add_column("ID", style="dim")
-    for i, ch in enumerate(channels, 1):
-        name = getattr(ch, "title", None) or getattr(ch, "username", None) or "Unknown"
-        ch_table.add_row(str(i), name, str(ch.id))
-    console.print(ch_table)
-    console.print()
-
+    console.print(f"  [bold]Mode:[/bold] [blue]All groups & channels (excluding DMs)[/blue]")
     console.print(f"  [bold]Target chat ID:[/bold] [magenta]{target_chat_id}[/magenta]")
     console.print()
 
@@ -112,11 +88,6 @@ async def main():
         console.print("[bold red]Error:[/bold red] No keywords found in keywords.txt")
         sys.exit(1)
 
-    raw_channels = load_lines("channels.txt")
-    if not raw_channels:
-        console.print("[bold red]Error:[/bold red] No channels found in channels.txt")
-        sys.exit(1)
-
     pattern = build_keyword_pattern(keywords)
 
     # --- Create session ---
@@ -124,17 +95,6 @@ async def main():
     await client.start()
 
     console.print("[green]✓ Session created successfully[/green]")
-
-    # --- Resolve channels ---
-    console.print("[dim]Resolving channels...[/dim]")
-    channels = await resolve_channels(client, raw_channels)
-
-    if not channels:
-        console.print("[bold red]Error:[/bold red] Could not resolve any channels. Check channels.txt")
-        await client.disconnect()
-        sys.exit(1)
-
-    channel_ids = [ch.id for ch in channels]
 
     # --- Target chat ---
     target_chat_id_env = os.getenv("TARGET_CHAT_ID")
@@ -149,11 +109,14 @@ async def main():
         )
 
     # --- Display config ---
-    display_startup(keywords, channels, target_chat_id)
+    display_startup(keywords, target_chat_id)
 
-    # --- Set up handler ---
-    @client.on(events.NewMessage(chats=channel_ids))
+    # --- Set up handler (all messages except DMs) ---
+    @client.on(events.NewMessage())
     async def handler(event):
+        # Skip direct messages (private chats)
+        if isinstance(event.message.peer_id, PeerUser):
+            return
         if not event.message.text:
             return
         if not pattern.search(event.message.text):
