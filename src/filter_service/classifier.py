@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from pathlib import Path
 from typing import Protocol
 
 import structlog
@@ -9,23 +10,8 @@ from shared.models import RawMessage
 
 logger = structlog.get_logger()
 
-SYSTEM_PROMPT = """\
-You are a classifier that determines if a message represents a potential freelance \
-job order, hiring post, or project request related to software development.
-
-Consider:
-- Is someone looking to hire a developer or pay for work?
-- Is this a job posting, project request, or freelance opportunity?
-- Does this look like a client seeking services (parsing, bots, automation, web dev, etc.)?
-
-Ignore:
-- General discussion, tutorials, news, self-promotion
-- Questions about learning or asking for advice
-- Someone offering their own services (not hiring)
-- Spam, ads for courses or products
-
-Reply with exactly YES or NO. Nothing else.\
-"""
+_PROMPT_FILE = Path(__file__).parent.parent.parent / "config" / "system_prompt.txt"
+SYSTEM_PROMPT = _PROMPT_FILE.read_text(encoding="utf-8").strip()
 
 
 class Classifier(Protocol):
