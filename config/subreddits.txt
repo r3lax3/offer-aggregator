@@ -1,0 +1,6 @@
+# Subreddits to monitor for freelance opportunities
+# One per line, without r/ prefix
+forhire
+slavelabour
+webscraping
+freelance
